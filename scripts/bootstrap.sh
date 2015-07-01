@@ -16,6 +16,7 @@ echo "db password: \"$DB_PASSWORD\"";
 echo mysql-server-5.5 mysql-server/root_password password "$ROOT_PASSWORD" | debconf-set-selections
 echo mysql-server-5.5 mysql-server/root_password_again password "$ROOT_PASSWORD" | debconf-set-selections
 apt-get -y install apache2 php5 mysql-server libapache2-mod-auth-mysql php5-mysql
+rm /var/www/html/index.html # Remove the default index apache places in this directory
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 /etc/init.d/apache2 restart
 
