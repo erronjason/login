@@ -1,0 +1,32 @@
+#!/bin/bash
+
+apt-get update
+#apt-get -y upgrade
+apt-get -y install pwgen
+
+ROOT_PASSWORD="$(pwgen 16 1)"
+DB_PASSWORD="$(pwgen 16 1)"
+
+{
+echo "db root password: \"$ROOT_PASSWORD\"";
+echo "db username: brave";
+echo "db password: \"$DB_PASSWORD\"";
+} >> /vagrant/scripts/credentials.txt
+
+echo mysql-server-5.5 mysql-server/root_password password "$ROOT_PASSWORD" | debconf-set-selections
+echo mysql-server-5.5 mysql-server/root_password_again password "$ROOT_PASSWORD" | debconf-set-selections
+apt-get -y install apache2 php5 mysql-server libapache2-mod-auth-mysql php5-mysql
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+/etc/init.d/apache2 restart
+
+
+if [ ! -f /var/log/databasesetup ];
+then
+    echo "CREATE USER 'brave'@'localhost' IDENTIFIED BY 'brave'" | mysql -uroot -p"$ROOT_PASSWORD"
+    echo "CREATE DATABASE brave" | mysql -uroot -p"$ROOT_PASSWORD"
+    echo "GRANT ALL ON brave.* TO 'brave'@'localhost'" | mysql -uroot -p$ROOT_PASSWORD
+    echo "flush privileges" | mysql -uroot -p"$ROOT_PASSWORD"
+    echo "SET PASSWORD FOR 'brave'@'localhost' = PASSWORD('$DB_PASSWORD')" | mysql -uroot -p$ROOT_PASSWORD
+    mysql -uroot -p"$ROOT_PASSWORD" brave < /vagrant/scripts/createdb.sql | mysql -uroot -p$ROOT_PASSWORD
+    touch /var/log/databasesetup
+fi
