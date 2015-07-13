@@ -1,2 +1,4 @@
+*.swp
 .vagrant/
-app/credentials.txt
+scripts/credentials.txt
+app/settings.php
