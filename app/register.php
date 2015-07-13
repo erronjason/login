@@ -9,7 +9,7 @@ $_SESSION['form_token'] = $token;
 <html>
 <head>
   <title>Registration | Bravelogin</title>
-  <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="lib/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
     $("#submit").click(function(){
@@ -41,7 +41,7 @@ $_SESSION['form_token'] = $token;
       ?>
       <a href='logout.php' id='logout'>Logout</a>
     <?php }else {?>
-    <a id="login" href="#">login</a>
+    <a id="login" href="login.php">login</a>
         <?php } ?>
   </div>
   <div id="register">
