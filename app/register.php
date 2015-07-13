@@ -1,5 +1,4 @@
 <?php
-include_once("lib.php");
 session_start();
 session_regenerate_id(true);
 $token = md5(uniqid('auth', true));
@@ -24,7 +23,7 @@ $_SESSION['form_token'] = $token;
           if (json[0] == 'success') {
             console.log("Registration successful!");
           } else {
-            console.log("LOOK AT ALL THESE ERRORS: "+json);
+            console.log("Error: "+json);
           }
         }
       })
