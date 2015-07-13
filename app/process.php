@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-
-print_r($_SERVER['HTTP_REFERER']);
-
 $errors = array();
 if (!isset($_GET[username]) or $_GET[username] === '') {
   array_push($errors, "You must specify a username");

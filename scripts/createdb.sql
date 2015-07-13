@@ -1,4 +1,4 @@
-create table users(
+create table if not exists users(
   id int not null auto_increment,
   primary key(id),
   username varchar(32) not null,
@@ -6,7 +6,7 @@ create table users(
   email varchar(254),
   password char(64),
   salt char(64)
-);
+)default character set=utf8;
 insert into users (username, email, password, salt) values ('Jason', 'ejsayre@example.com', 'pass', 'salt');
 insert into users (username, email, password, salt) values ('Nick', 'nick@example.com', 'password1234', 'salt');
 # insert into users (username, email, password, salt) values ('Gabe', 'gabe@example.com', 'pass321', 'salt');

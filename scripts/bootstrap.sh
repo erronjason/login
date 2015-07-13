@@ -33,4 +33,9 @@ then
   echo "SET PASSWORD FOR 'brave'@'localhost' = PASSWORD('$DB_PASSWORD')" | mysql -uroot -p$ROOT_PASSWORD
   mysql -uroot -p"$ROOT_PASSWORD" brave < /vagrant/scripts/createdb.sql | mysql -uroot -p$ROOT_PASSWORD
   touch /var/log/databasesetup
+
+  # For now, I'm unsetting the root password for ease of testing
+  ##### REMOVE THIS BEFORE FINAL ROLLOUT #####
+  mysqladmin -u root -p"$ROOT_PASSWORD" password ''
+  ##### REMOVE THIS BEFORE FINAL ROLLOUT #####
 fi
