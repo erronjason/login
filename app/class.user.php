@@ -12,7 +12,7 @@ class User {
 
   public function logout() {
     session_destroy();
-    unset($_SESSION['username']);
+    unset($_SESSION['session']);
     setcookie ('PHPSESSID', "", 1);
     setcookie ('PHPSESSID', false);
     unset($_COOKIE['PHPSESSID']);
@@ -30,8 +30,7 @@ class User {
       $statement->bindParam(':username', $username);
       $statement->bindParam(':email', $email);
       $statement->bindParam(':password', $password);
-      $statement->execute();
-      return $statement;
+      return $statement->execute();
     } catch(PDOException $error) {
       echo $error->getMessage();
     }
@@ -51,13 +50,14 @@ class User {
     }
   }
 
-  public function checkLogin($username) {
-    return true;
+  public function checkLogin() {
+    if(isset($_SESSION['session']))
+		{
+			return true;
+		}
   }
 
   public function login($username, $password) {
-    // Return false if username or password are wrong.
-    // If true, set id on session.
     try {
       $statement = $this->handler->prepare("
       select * from users
