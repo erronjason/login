@@ -10,8 +10,8 @@ DB_PASSWORD="$(pwgen -sc 16 1)"
 {
   echo "<?php";
   echo "\$dsn = \"mysql:host=localhost;dbname=brave\";";
-  echo "\$username = \"brave\";";
-  echo "\$password = \"$DB_PASSWORD\";";
+  echo "\$db_username = \"brave\";";
+  echo "\$db_password = \"$DB_PASSWORD\";";
   echo "?>";
 } > /vagrant/app/settings.php
 echo "db root password: \"$ROOT_PASSWORD\"" > /vagrant/scripts/credentials.txt

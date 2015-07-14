@@ -1,18 +1,20 @@
 <?php
 
 class User {
-  /// Handles user interaction when
-  /// provided a database connection.
+  /// Handles main user related actions
 
   private $handler;
 
   function __construct($priv_handler) {
+    // Requires an instance of PDO(),
+    // I recommend wrapping it in a try
     $this->handler = $priv_handler;
   }
 
   public function register($username, $email, $password) {
+    // Expects sanitized data, and the
+    // password should be hashed prior.
     try {
-      $password = password_hash($password, PASSWORD_DEFAULT);
       $statement = $this->handler->prepare("
       insert into users (username, email, password)
       values (:username, :email, :password)");
