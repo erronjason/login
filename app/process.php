@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once 'class.user.php';
+require_once("settings.php");
 
 // Create our empty error queue
 $errors = array();
