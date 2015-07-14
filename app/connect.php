@@ -1,20 +1,16 @@
 <?php
-require_once("settings.php");
-
+include("settings.php");
 try {
     $handler = new PDO($dsn, $username, $password);
-
     // Clean values
-    $statement = $handler->prepare("insert into users (username, email, password) values (:username, :email, :password");
+    $statement = $handler->prepare("insert into users (username, email, password) values (:username, :email, :password)");
     $statement->bindParam(':username', $username);
     $statement->bindParam(':email', $email);
     $statement->bindParam(':password', $password);
-
     $username = 'Bryce';
     $email    = 'bryce@example.com';
-    $password = '123pass';
+    $password = password_hash('password4', PASSWORD_DEFAULT);
     $statement->execute();
-
     foreach($handler->query('select * from users') as $row) {
       print_r($row);
       print "<br>";
