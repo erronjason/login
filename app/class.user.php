@@ -10,17 +10,6 @@ class User {
     $this->handler = $priv_handler;
   }
 
-  public function logout() {
-    session_destroy();
-    unset($_SESSION['session']);
-    setcookie ('PHPSESSID', "", 1);
-    setcookie ('PHPSESSID', false);
-    unset($_COOKIE['PHPSESSID']);
-    header('Location: login.php');
-  }
-
-
-
   public function register($username, $email, $password) {
     try {
       $password = password_hash($password, PASSWORD_DEFAULT);

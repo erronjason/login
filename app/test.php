@@ -20,7 +20,8 @@ $user = new User($handler);
 // Testing registration and login functions
 // user->register needs to handle errors from
 // mysql accordingly and display errors
-//print($user->register("Ben", "ben@example.com", password_hash("password", PASSWORD_DEFAULT)));
+
+//print($user->register("Ben", "ben@example.com", "password"));
 print($user->login("Ben", "password"));
 
 ?>

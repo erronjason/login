@@ -36,7 +36,9 @@ $_SESSION['form_token'] = $token;
 
 <body>
   <div id="dashboard">
-      <?php if(isset($_SESSION['username'])){
+      <?php
+      print_r($_SESSION);
+      if(isset($_SESSION['session'])){
       ?>
       <a href='logout.php' id='logout'>Logout</a>
     <?php }else {?>
