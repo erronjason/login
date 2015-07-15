@@ -8,7 +8,7 @@ require_once 'class.user.php';
 require_once("settings.php");
 
 try {
-	$handler = new PDO($dsn,$username,$password);
+	$handler = new PDO($dsn,$db_username,$db_password);
 	$handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $error) {
@@ -23,5 +23,4 @@ $user = new User($handler);
 
 //print($user->register("Ben", "ben@example.com", "password"));
 print($user->login("Ben", "password"));
-
 ?>
