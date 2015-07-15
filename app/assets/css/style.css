@@ -1,0 +1,71 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700);
+
+html, body {
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: 700;
+  color: #464646;
+  font-size: 13px;
+  margin: 0;
+}
+a, a:visited {
+  font-weight: 400;
+  background-color: #363636;
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  background-color: #363636;
+  color: #ee524a;
+  text-decoration: none;
+}
+
+p label {
+  padding: 0 0 0 1px;
+}
+
+#dashboard {
+  font-size: 17px;
+  height: 60px;
+  background-color: #363636;
+}
+#dashboard a {
+  display: inline-block;
+  padding: 0 59px;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+}
+#dashboard a:hover {
+  background-color: #444;
+  color: #ee524a;
+}
+
+
+
+input {
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #464646;
+  outline: none;
+  padding: 9px 9px 9px 9px;
+  border: 0px solid #f5f8f7;
+  background-color: #f5f8f7;
+}
+.inputerror {
+  border: 1px solid #ee524a;
+}
+input[type=submit] {
+  padding: 9px 25px 9px 25px;
+  border-radius: 25px;
+  color: #fff;
+  background-color: #ee524a;
+}
+.correct {
+  margin-left: -25px;
+  color: #13AF68;
+}
+.incorrect {
+  margin-left: -25px;
+  color: #ee524a;
+}

@@ -95,6 +95,9 @@ if ($_GET['t'] === "r") {
     print json_encode($errors);
   } elseif ($user->login($_GET['username'], $_GET['password'])) {
     print json_encode(array("success"));
+  } else {
+    array_push($errors, "Invalid username or password");
+    print json_encode($errors);
   }
 }
 

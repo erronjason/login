@@ -8,9 +8,10 @@ $_SESSION['form_token'] = $token;
 <html>
 <head>
   <title>Registration | Bravelogin</title>
-  <script type="text/javascript" src="lib/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script type="text/javascript">
-  $(document).ready(function(){
+  $(function(){
     $("#submit").click(function(){
       username=$("#username").val();
       email=$("#email").val();
@@ -23,13 +24,26 @@ $_SESSION['form_token'] = $token;
           if (json[0] == 'success') {
             console.log("Registration successful!");
           } else {
-            console.log("Error: "+json);
+            $("#error").html("")
+            for(var i=0; i < json.length; i++) {
+              $("#error").append(json[i]+"<br>");
+            }
           }
         }
       })
     })
       return false;
   })
+  function matchPass() {
+    var password = document.getElementById("password");
+    var cpassword = document.getElementById("cpassword");
+    var iscorrect = document.getElementById('iscorrect');
+    if (password.value == cpassword.value) {
+      iscorrect.innerHTML = '<span class="correct">&#10004;</span>';
+    } else {
+      iscorrect.innerHTML = '<span class="incorrect">&#10008;</span>';
+    }
+  }
   </script>
 </head>
 
@@ -49,21 +63,26 @@ $_SESSION['form_token'] = $token;
     <form id="form" method="post" onsubmit="return false;" action="process.php">
       <p>
         <label>Username:</label>
-        <input type="text" id="username" name="username" />
       </p>
+      <input type="text" id="username" name="username" />
       <p>
         <label>Email:</label>
-        <input type="text" id="email" name="email" />
       </p>
+      <input type="text" id="email" name="email" />
       <p>
         <label>Password:</label>
-        <input type="password" id="password" name="password" />
       </p>
+      <input type="password" id="password" name="password" />
       <p>
-        <label></label><br/>
+        <label>Confirm Password:</label>
+      </p>
+      <input type="password" id="cpassword" name="cpassword" onkeyup="matchPass(); return false;"/>
+      <span id="iscorrect"></span>
+      <p>
         <input type="submit" id="submit" value="Register" />
       </p>
     </form>
   </div>
+
 </body>
 </html>

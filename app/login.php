@@ -7,8 +7,9 @@ $_SESSION['form_token'] = $token;
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration | Bravelogin</title>
-  <script type="text/javascript" src="lib/js/jquery-1.11.3.min.js"></script>
+  <title>Login | Bravelogin</title>
+  <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script type="text/javascript">
   $(document).ready(function(){
     $("#submit").click(function(){
