@@ -27,17 +27,39 @@ class User {
     }
   }
 
-  public function checkUsername($username) {
-    $statement = $handler->prepare("
+  public function emailInUse($email) {
+    $statement = $this->handler->prepare("
+    select * from users
+    where email=:email
+    limit 1");
+    $statement->execute(array(':email'=>$email));
+    $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if ($statement->rowCount() < 1) {
+      return false;
+    } else {
+      if ($rows[0]['email'] === $email) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  public function usernameInUse($username) {
+    $statement = $this->handler->prepare("
     select * from users
     where username=:username
     limit 1");
     $statement->execute(array(':username'=>$username));
     $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-    if ($rows[0][username] === $username) {
-      return "Username already in use!";
+    if ($statement->rowCount() < 1) {
+      return false;
     } else {
-      return "Username is available";
+      if ($rows[0]['username'] === $username) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
