@@ -43,9 +43,9 @@ class User {
 
   public function checkLogin() {
     if(isset($_SESSION['session']))
-		{
-			return true;
-		}
+    {
+      return true;
+    }
   }
 
   public function login($username, $password) {
