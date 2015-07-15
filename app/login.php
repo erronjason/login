@@ -18,10 +18,10 @@ $_SESSION['form_token'] = $token;
       $.ajax({
         url: "process.php",
         dataType: 'json',
-        data: "t=r&username="+username+"&email="+email+"&password="+pass,
+        data: "t=l&username="+username+"&password="+pass,
         success: function(json) {
           if (json[0] == 'success') {
-            console.log("Registration successful!");
+            console.log("Login successful!");
           } else {
             console.log("Error: "+json);
           }
@@ -36,15 +36,13 @@ $_SESSION['form_token'] = $token;
 
 <body>
   <div id="dashboard">
-      <?php
-      if(isset($_SESSION['session'])){
-      ?>
+    <?php if(isset($_SESSION['session'])){ ?>
       <a href='logout.php' id='logout'>Logout</a>
     <?php }else {?>
-    <a id="login" href="login.php">login</a>
+      <a id="login" href="register.php">Register</a>
     <?php } ?>
   </div>
-  <div id="register">
+  <div id="login">
     <div class="errors" id="error"></div>
     <form id="form" method="post" onsubmit="return false;" action="process.php">
       <p>
@@ -52,16 +50,12 @@ $_SESSION['form_token'] = $token;
         <input type="text" id="username" name="username" />
       </p>
       <p>
-        <label>Email:</label>
-        <input type="text" id="email" name="email" />
-      </p>
-      <p>
         <label>Password:</label>
         <input type="password" id="password" name="password" />
       </p>
       <p>
         <label></label><br/>
-        <input type="submit" id="submit" value="Register" />
+        <input type="submit" id="submit" value="Login" />
       </p>
     </form>
   </div>
