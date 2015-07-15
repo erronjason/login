@@ -65,8 +65,7 @@ if (!isset($_GET['password']) or $password === '') {
 if (strlen($password) < 8) {
   array_push($errors, "Your password must be 8 or more characters");
 }
-$pwcomplex = (preg_match_all('/[a-zA-Z]/', $password));
-if ($pwcomplex === false) {
+if (!preg_match_all('/^(?=.*[a-z])(?=.*[A-Z]).+$/', $password)) {
   array_push($errors,
              "Your password must include upper and lowercase characters");
 }
