@@ -7,7 +7,6 @@ $_SESSION['form_token'] = $token;
   <?php if(!isset($_SESSION['session'])){
     header('Location: login.php', true, 302);
   }else { ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,6 @@ $_SESSION['form_token'] = $token;
       </div>
     </div>
   </div>
-
 </body>
 </html>
 <?php } ?>

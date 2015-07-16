@@ -28,6 +28,7 @@ class User {
   }
 
   public function emailInUse($email) {
+    // Ensure the email isn't untilized by another account
     $statement = $this->handler->prepare("
     select * from users
     where email=:email
@@ -46,6 +47,7 @@ class User {
   }
 
   public function usernameInUse($username) {
+    // Ensure the username isn't untilized by another account
     $statement = $this->handler->prepare("
     select * from users
     where username=:username
@@ -64,6 +66,7 @@ class User {
   }
 
   public function checkLogin() {
+    // Return true if the user's logged in
     if(isset($_SESSION['session']))
     {
       return true;
@@ -71,6 +74,7 @@ class User {
   }
 
   public function login($username, $password) {
+    // Set the session if credentials are correct
     try {
       $statement = $this->handler->prepare("
       select * from users

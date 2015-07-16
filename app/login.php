@@ -6,7 +6,6 @@ $_SESSION['form_token'] = $token;
 if(isset($_SESSION['session'])){
     header('Location: dashboard.php', true, 302);
 }else { ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +34,6 @@ if(isset($_SESSION['session'])){
           } else {
             error.innerHTML = '';
             $.each(json, function(key, value){
-
               if (value !== null) {
                 var errlen = value.length;
                 for (var i = 0; i < errlen; i++) {
@@ -55,47 +53,45 @@ if(isset($_SESSION['session'])){
   })
   </script>
 </head>
-
-
 <body>
   <?php require("partials/navbar.php");?>
   <div id="container">
     <div id="login">
       <div id="errors"></div>
       <div class="floatleft">
-          <?php if (isset($_GET['r'])) {
-            if ($_GET['r'] === "s") {
-              echo'<p>
-                <span id="headertext">Registration successful!</span>
-              </p>';
-            }
-          } elseif (isset($_GET['l'])){
-            if ($_GET['l'] === "s") {
-              echo'<p>
-                <span id="headertext">You have been logged out.</span>
-              </p>';
-            }
-          } else {
-            echo '<p>
-              <span id="headertext">Please login:</span>
+        <?php if (isset($_GET['r'])) {
+          if ($_GET['r'] === "s") {
+            echo'<p>
+              <span id="headertext">Registration successful!</span>
             </p>';
-          } ?>
-          <form id="form" method="post" onsubmit="return false;" action="process.php">
-            <div id="floatleft">
-            <p>
-              <label>Username:</label>
-              <input type="text" id="username" name="username" />
-            </p>
-            <p>
-              <label>Password:</label>
-              <input type="password" id="password" name="password" />
-            </p>
-            <p>
-              <label></label><br/>
-              <input type="submit" id="submit" value="Login" />
-            </p>
-          </div>
-        </form>
+          }
+        } elseif (isset($_GET['l'])){
+          if ($_GET['l'] === "s") {
+            echo'<p>
+              <span id="headertext">You have been logged out.</span>
+            </p>';
+          }
+        } else {
+          echo '<p>
+            <span id="headertext">Please login:</span>
+          </p>';
+        } ?>
+        <form id="form" method="post" onsubmit="return false;" action="process.php">
+          <div id="floatleft">
+          <p>
+            <label>Username:</label>
+            <input type="text" id="username" name="username" />
+          </p>
+          <p>
+            <label>Password:</label>
+            <input type="password" id="password" name="password" />
+          </p>
+          <p>
+            <label></label><br/>
+            <input type="submit" id="submit" value="Login" />
+          </p>
+        </div>
+      </form>
     </div>
   </div>
 </div>

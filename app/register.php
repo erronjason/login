@@ -40,7 +40,6 @@ if(isset($_SESSION['session'])){
               if (document.getElementById(key) !== null){
                 document.getElementById(key).className="inputerror";
               }
-
             });
           }
         }
@@ -62,14 +61,12 @@ if(isset($_SESSION['session'])){
   }
   </script>
 </head>
-
-
 <body>
   <div id="dashboard">
-      <?php
-      if(isset($_SESSION['session'])){
-      ?>
-      <a href='logout.php' id='logout'>Logout</a>
+    <?php
+    if(isset($_SESSION['session'])){
+    ?>
+    <a href='logout.php' id='logout'>Logout</a>
     <?php }else {?>
     <a id="login" href="login.php">login</a>
     <?php } ?>

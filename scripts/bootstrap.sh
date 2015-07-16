@@ -23,7 +23,6 @@ rm /var/www/html/index.html # Remove the default index apache places in this dir
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 /etc/init.d/apache2 restart
 
-
 if [ ! -f /var/log/databasesetup ];
 then
   echo "CREATE USER 'brave'@'localhost' IDENTIFIED BY 'brave'" | mysql -uroot -p"$ROOT_PASSWORD"

@@ -19,6 +19,7 @@ $err_email = array();
 $err_password = array();
 
 if ($_GET['t'] === "r") {
+  // If from the registration page, handle registration interaction
   // Check up on the form data and filter it accordingly
   if (!isset($_GET['username']) or $_GET['username'] === '') {
     $err_username[] = 'You must specify a username';
@@ -78,6 +79,7 @@ if ($_GET['t'] === "r") {
     print json_encode(array("success"));
   }
 } elseif ($_GET['t'] === "l") {
+  // If from the login page, handle login interaction
   if (!isset($_GET['username']) or $_GET['username'] === '') {
     $err_username[] = 'You must specify a username';
   }
