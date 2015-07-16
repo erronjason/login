@@ -48,22 +48,24 @@ $_SESSION['form_token'] = $token;
   <?php require("partials/navbar.php"); ?>
   <div id="login">
     <div class="errors" id="error"></div>
-    <p>
-      <span id="headertext">Please login:</span>
-    </p>
-    <form id="form" method="post" onsubmit="return false;" action="process.php">
       <p>
-        <label>Username:</label>
-        <input type="text" id="username" name="username" />
+        <span id="headertext">Please login:</span>
       </p>
-      <p>
-        <label>Password:</label>
-        <input type="password" id="password" name="password" />
-      </p>
-      <p>
-        <label></label><br/>
-        <input type="submit" id="submit" value="Login" />
-      </p>
+      <form id="form" method="post" onsubmit="return false;" action="process.php">
+        <div id="floatleft">
+        <p>
+          <label>Username:</label>
+          <input type="text" id="username" name="username" />
+        </p>
+        <p>
+          <label>Password:</label>
+          <input type="password" id="password" name="password" />
+        </p>
+        <p>
+          <label></label><br/>
+          <input type="submit" id="submit" value="Login" />
+        </p>
+      </div>
     </form>
   </div>
 </body>

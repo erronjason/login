@@ -64,29 +64,35 @@ $_SESSION['form_token'] = $token;
     <a id="login" href="login.php">login</a>
     <?php } ?>
   </div>
-  <div id="register">
-    <form id="form" method="post" onsubmit="return false;" action="process.php">
-      <p class="usernamelabel">
-        <label>Username:</label>
-      </p>
-      <input type="text" id="username" name="username" />
-      <p id="emaillabel">
-        <label>Email:</label>
-      </p>
-      <input type="text" id="email" name="email" />
-      <p id="passwordlabel">
-        <label>Password:</label>
-      </p>
-      <input type="password" id="password" name="password" />
-      <p id="cpasswordlabel">
-        <label>Confirm Password:</label>
-      </p>
-      <input type="password" id="cpassword" name="cpassword" onkeyup="matchPass(); return false;"/>
-      <span id="iscorrect"></span>
-      <p>
-        <input type="submit" id="submit" value="Register" />
-      </p>
-    </form>
+  <div id="container">
+    <div id="register">
+      <form id="form" method="post" onsubmit="return false;" action="process.php">
+        <div class="floatleft">
+          <p class="usernamelabel">
+            <label>Username:</label>
+          </p>
+          <input type="text" id="username" name="username" />
+          <p id="emaillabel">
+            <label>Email:</label>
+          </p>
+          <input type="text" id="email" name="email" />
+        </div>
+        <div class="floatright">
+          <p id="passwordlabel">
+            <label>Password:</label>
+          </p>
+          <input type="password" id="password" name="password" />
+          <p id="cpasswordlabel">
+            <label>Confirm Password:</label>
+          </p>
+          <input type="password" id="cpassword" name="cpassword" onkeyup="matchPass(); return false;"/>
+          <span id="iscorrect"></span>
+          <p>
+            <input type="submit" id="submit" value="Register" />
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 
 </body>
