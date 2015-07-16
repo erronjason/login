@@ -30,7 +30,7 @@ $_SESSION['form_token'] = $token;
             $.each(json, function(key, value){
               //add class inputerror to matching ids
                 console.log("error type:", key, 'Message:', value);
-              if (Boolean(key) !== false){
+              if (Boolean(key)){
                 document.getElementById(key).className="inputerror";
               }
             });
@@ -52,9 +52,15 @@ $_SESSION['form_token'] = $token;
         <div class="errors" id="error"></div>
           <?php if (isset($_GET['r'])) {
             if ($_GET['r'] === "s") {
-            echo'<p>
-              <span id="headertext">Registration successful!</span>
-            </p>';
+              echo'<p>
+                <span id="headertext">Registration successful!</span>
+              </p>';
+            }
+          } elseif (isset($_GET['l'])){
+            if ($_GET['l'] === "s") {
+              echo'<p>
+                <span id="headertext">You have been logged out.</span>
+              </p>';
             }
           } else {
             echo '<p>

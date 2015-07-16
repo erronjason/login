@@ -55,7 +55,6 @@ input {
 }
 input[type=submit] {
   cursor: pointer;
-  margin-top: 3%;
   width: 106%;
   padding: 10px 25px 10px 25px;
   border-radius: 25px;
@@ -71,6 +70,8 @@ input[type=submit] {
   color: #ee524a;
 }
 #headertext {
+  padding-bottom: 14px;
+  display: block;
   font-size: 20px;
 }
 .errordetails {
@@ -86,7 +87,7 @@ input[type=submit] {
   font-size: 10;
 }
 #container {
-  margin: 5% 10% 0 10%;
+  margin: 3% 10% 0 10%;
 
   position: relative;
   width: 80%;
