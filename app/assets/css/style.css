@@ -80,6 +80,12 @@ input[type=submit] {
   font-weight: 400;
   font-size: 10;
 }
+#errors {
+  display: block;
+  color: #ee524a;
+  font-weight: 400;
+  font-size: 10;
+}
 .infotext {
   width: 200px
   display: block;

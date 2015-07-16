@@ -14,7 +14,9 @@ catch(PDOException $error) {
 
 $user = new User($handler);
 
-// TODO: check if logged in
+$err_username = array();
+$err_email = array();
+$err_password = array();
 
 if ($_GET['t'] === "r") {
   // Check up on the form data and filter it accordingly
@@ -45,7 +47,7 @@ if ($_GET['t'] === "r") {
   (Though it does adhere fairly well to RFC-822)*/
   $mail = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
   if (!filter_var($_GET['email'], FILTER_VALIDATE_EMAIL) === true) {
-    $err_email[] = 'Not a valid email address';
+    $err_email[] = 'You have not entered a valid email address';
   } else {
     if ($user->emailInUse($mail)) {
       $err_email[] = 'That email address is already in use';
@@ -76,10 +78,6 @@ if ($_GET['t'] === "r") {
     print json_encode(array("success"));
   }
 } elseif ($_GET['t'] === "l") {
-  $err_username = array();
-  $err_password = array();
-  $err_general = array();
-
   if (!isset($_GET['username']) or $_GET['username'] === '') {
     $err_username[] = 'You must specify a username';
   }
@@ -87,17 +85,16 @@ if ($_GET['t'] === "r") {
     $err_password[] = 'You must specify a password';
   }
   if (!preg_match_all('/^[a-zA-Z0-9_\-]+$/', $_GET['username'])) {
-    $err_general[] = 'Invalid username or password';
+    $err_username[] = 'Invalid characters in username';
   }
-  $errors = array('username'=>$err_username, 'password'=>$err_password, 'general'=>$err_general);
-  $errcount = count($err_general)+count($err_username)+count($err_password);
+  $errors = array('username'=>$err_username, 'password'=>$err_password);
+  $errcount = count($err_username)+count($err_password);
   if ($errcount > 0) {
     print json_encode($errors);
   } elseif ($user->login($_GET['username'], $_GET['password'])) {
     print json_encode(array("success"));
   } else {
-    $errors['general'] = 'Invalid username or password';
-    print json_encode($errors);
+    print json_encode(array("badlogin"));
   }
 }
 

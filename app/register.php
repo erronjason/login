@@ -3,7 +3,9 @@ session_start();
 session_regenerate_id(true);
 $token = md5(uniqid('auth', true));
 $_SESSION['form_token'] = $token;
-?>
+if(isset($_SESSION['session'])){
+    header('Location: dashboard.php', true, 302);
+}else { ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +18,7 @@ $_SESSION['form_token'] = $token;
       username=$("#username").val();
       email=$("#email").val();
       pass=$("#password").val();
+      var error = document.getElementById('errors');
       $.ajax({
         url: "process.php",
         dataType: 'json',
@@ -25,14 +28,19 @@ $_SESSION['form_token'] = $token;
             console.log("Registration successful!");
             location.replace("login.php?r=s");
           } else {
-            $("#error").html("")
-            //for(var i=0; i < json.length; i++) {
-            //  $("#error").append(json[i]+"<br>");
-            //}
+            error.innerHTML = '';
             $.each(json, function(key, value){
-              //add class inputerror to matching ids
-              console.log("error type:", key, 'Message:', value);
-              document.getElementById(key).className="inputerror";
+              if (value !== null) {
+                var errlen = value.length;
+                for (var i = 0; i < errlen; i++) {
+                    var errval = "<p>&#8226; "+value[i]+"</p>";
+                    $(errval).appendTo("#errors");
+                }
+              }
+              if (document.getElementById(key) !== null){
+                document.getElementById(key).className="inputerror";
+              }
+
             });
           }
         }
@@ -45,7 +53,7 @@ $_SESSION['form_token'] = $token;
     var cpassword = document.getElementById("cpassword");
     var iscorrect = document.getElementById('iscorrect');
     if (password.value == cpassword.value) {
-      iscorrect.innerHTML = '<span class="infotext"><span class="correct">&#10004;</span> Password matches!</span>';
+      iscorrect.innerHTML = '<span class="infotext"><span class="correct">&#10004;</span> Passwords match!</span>';
       return true;
     } else {
       iscorrect.innerHTML = '<span class="infotext"><span class="incorrect">&#10008;</span> Passwords do not match</span>';
@@ -68,6 +76,7 @@ $_SESSION['form_token'] = $token;
   </div>
   <div id="container">
     <div id="register">
+      <div id="errors"></div>
       <form id="form" method="post" onsubmit="return false;" action="process.php">
         <div class="floatleft">
           <p class="usernamelabel">
@@ -83,7 +92,7 @@ $_SESSION['form_token'] = $token;
           <p id="passwordlabel">
             <label>Password:</label>
           </p>
-          <input type="password" id="password" name="password" />
+          <input type="password" id="password" name="password" onkeyup="matchPass(); return false;"/>
           <p id="cpasswordlabel">
             <label>Confirm Password:</label>
           </p>
@@ -96,6 +105,6 @@ $_SESSION['form_token'] = $token;
       </form>
     </div>
   </div>
-
 </body>
 </html>
+<?php } ?>

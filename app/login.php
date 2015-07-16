@@ -3,7 +3,10 @@ session_start();
 session_regenerate_id(true);
 $token = md5(uniqid('auth', true));
 $_SESSION['form_token'] = $token;
-?>
+if(isset($_SESSION['session'])){
+    header('Location: dashboard.php', true, 302);
+}else { ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +19,7 @@ $_SESSION['form_token'] = $token;
       username=$("#username").val();
       email=$("#email").val();
       pass=$("#password").val();
+      var error = document.getElementById('errors');
       $.ajax({
         url: "process.php",
         dataType: 'json',
@@ -23,14 +27,23 @@ $_SESSION['form_token'] = $token;
         success: function(json) {
           if (json[0] == 'success') {
             location.replace("dashboard.php");
+          } else if (json[0] == 'badlogin') {
+            error.innerHTML = '';
+            error.innerHTML = 'Incorrect username or password.';
+            document.getElementById("username").className="inputerror";
+            document.getElementById("password").className="inputerror";
           } else {
-            //for(var i=0; i < json.length; i++) {
-            //  $("#error").append(json[i]+"<br>");
-            //}
+            error.innerHTML = '';
             $.each(json, function(key, value){
-              //add class inputerror to matching ids
-                console.log("error type:", key, 'Message:', value);
-              if (Boolean(key)){
+
+              if (value !== null) {
+                var errlen = value.length;
+                for (var i = 0; i < errlen; i++) {
+                    var errval = "<p>&#8226; "+value[i]+"</p>";
+                    $(errval).appendTo("#errors");
+                }
+              }
+              if (value !== null) {
                 document.getElementById(key).className="inputerror";
               }
             });
@@ -48,8 +61,8 @@ $_SESSION['form_token'] = $token;
   <?php require("partials/navbar.php");?>
   <div id="container">
     <div id="login">
+      <div id="errors"></div>
       <div class="floatleft">
-        <div class="errors" id="error"></div>
           <?php if (isset($_GET['r'])) {
             if ($_GET['r'] === "s") {
               echo'<p>
@@ -88,3 +101,4 @@ $_SESSION['form_token'] = $token;
 </div>
 </body>
 </html>
+<?php } ?>
