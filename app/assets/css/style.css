@@ -66,6 +66,9 @@ input[type=submit] {
   margin-left: -25px;
   color: #ee524a;
 }
+#headertext {
+  font-size: 20px;
+}
 .errordetails {
   display: block;
   color: #ee524a;

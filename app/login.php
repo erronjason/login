@@ -22,7 +22,7 @@ $_SESSION['form_token'] = $token;
         data: "t=l&username="+username+"&password="+pass,
         success: function(json) {
           if (json[0] == 'success') {
-            console.log("Login successful!");
+            location.replace("dashboard.php");
           } else {
             //for(var i=0; i < json.length; i++) {
             //  $("#error").append(json[i]+"<br>");
@@ -45,15 +45,12 @@ $_SESSION['form_token'] = $token;
 
 
 <body>
-  <div id="dashboard">
-    <?php if(isset($_SESSION['session'])){ ?>
-      <a href='logout.php' id='logout'>Logout</a>
-    <?php }else {?>
-      <a id="login" href="register.php">Register</a>
-    <?php } ?>
-  </div>
+  <?php require("partials/navbar.php"); ?>
   <div id="login">
     <div class="errors" id="error"></div>
+    <p>
+      <span id="headertext">Please login:</span>
+    </p>
     <form id="form" method="post" onsubmit="return false;" action="process.php">
       <p>
         <label>Username:</label>

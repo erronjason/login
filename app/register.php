@@ -23,6 +23,7 @@ $_SESSION['form_token'] = $token;
         success: function(json) {
           if (json[0] == 'success') {
             console.log("Registration successful!");
+            location.replace("login.php");
           } else {
             $("#error").html("")
             //for(var i=0; i < json.length; i++) {
