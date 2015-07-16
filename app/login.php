@@ -24,7 +24,16 @@ $_SESSION['form_token'] = $token;
           if (json[0] == 'success') {
             console.log("Login successful!");
           } else {
-            console.log("Error: "+json);
+            //for(var i=0; i < json.length; i++) {
+            //  $("#error").append(json[i]+"<br>");
+            //}
+            $.each(json, function(key, value){
+              //add class inputerror to matching ids
+              console.log("error type:", key, 'Message:', value);
+              if (!value == null){
+                document.getElementById(key).className="inputerror";
+              }
+            });
           }
         }
       })

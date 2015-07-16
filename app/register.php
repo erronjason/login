@@ -25,9 +25,14 @@ $_SESSION['form_token'] = $token;
             console.log("Registration successful!");
           } else {
             $("#error").html("")
-            for(var i=0; i < json.length; i++) {
-              $("#error").append(json[i]+"<br>");
-            }
+            //for(var i=0; i < json.length; i++) {
+            //  $("#error").append(json[i]+"<br>");
+            //}
+            $.each(json, function(key, value){
+              //add class inputerror to matching ids
+              console.log("error type:", key, 'Message:', value);
+              document.getElementById(key).className="inputerror";
+            });
           }
         }
       })
@@ -59,21 +64,20 @@ $_SESSION['form_token'] = $token;
     <?php } ?>
   </div>
   <div id="register">
-    <div class="errors" id="error"></div>
     <form id="form" method="post" onsubmit="return false;" action="process.php">
-      <p>
+      <p class="usernamelabel">
         <label>Username:</label>
       </p>
       <input type="text" id="username" name="username" />
-      <p>
+      <p id="emaillabel">
         <label>Email:</label>
       </p>
       <input type="text" id="email" name="email" />
-      <p>
+      <p id="passwordlabel">
         <label>Password:</label>
       </p>
       <input type="password" id="password" name="password" />
-      <p>
+      <p id="cpasswordlabel">
         <label>Confirm Password:</label>
       </p>
       <input type="password" id="cpassword" name="cpassword" onkeyup="matchPass(); return false;"/>

@@ -39,9 +39,6 @@ p label {
   background-color: #444;
   color: #ee524a;
 }
-
-
-
 input {
   font-family: 'PT Sans Caption', sans-serif;
   font-weight: 700;
@@ -68,4 +65,10 @@ input[type=submit] {
 .incorrect {
   margin-left: -25px;
   color: #ee524a;
+}
+.errordetails {
+  display: block;
+  color: #ee524a;
+  font-weight: 400;
+  font-size: 10;
 }
