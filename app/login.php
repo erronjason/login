@@ -29,8 +29,8 @@ $_SESSION['form_token'] = $token;
             //}
             $.each(json, function(key, value){
               //add class inputerror to matching ids
-              console.log("error type:", key, 'Message:', value);
-              if (!value == null){
+                console.log("error type:", key, 'Message:', value);
+              if (Boolean(key) !== false){
                 document.getElementById(key).className="inputerror";
               }
             });
@@ -45,28 +45,40 @@ $_SESSION['form_token'] = $token;
 
 
 <body>
-  <?php require("partials/navbar.php"); ?>
-  <div id="login">
-    <div class="errors" id="error"></div>
-      <p>
-        <span id="headertext">Please login:</span>
-      </p>
-      <form id="form" method="post" onsubmit="return false;" action="process.php">
-        <div id="floatleft">
-        <p>
-          <label>Username:</label>
-          <input type="text" id="username" name="username" />
-        </p>
-        <p>
-          <label>Password:</label>
-          <input type="password" id="password" name="password" />
-        </p>
-        <p>
-          <label></label><br/>
-          <input type="submit" id="submit" value="Login" />
-        </p>
-      </div>
-    </form>
+  <?php require("partials/navbar.php");?>
+  <div id="container">
+    <div id="login">
+      <div class="floatleft">
+        <div class="errors" id="error"></div>
+          <?php if (isset($_GET['r'])) {
+            if ($_GET['r'] === "s") {
+            echo'<p>
+              <span id="headertext">Registration successful!</span>
+            </p>';
+            }
+          } else {
+            echo '<p>
+              <span id="headertext">Please login:</span>
+            </p>';
+          } ?>
+          <form id="form" method="post" onsubmit="return false;" action="process.php">
+            <div id="floatleft">
+            <p>
+              <label>Username:</label>
+              <input type="text" id="username" name="username" />
+            </p>
+            <p>
+              <label>Password:</label>
+              <input type="password" id="password" name="password" />
+            </p>
+            <p>
+              <label></label><br/>
+              <input type="submit" id="submit" value="Login" />
+            </p>
+          </div>
+        </form>
+    </div>
   </div>
+</div>
 </body>
 </html>

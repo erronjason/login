@@ -16,10 +16,18 @@ $_SESSION['form_token'] = $token;
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-  <?php include("partials/navbar.php"); ?>
-    <p>
-      <span id="headertext">Welcome to the dashboard</span>
-    </p>
+  <?php include("partials/navbar.php");?>
+  <div id="container">
+    <div class="floatleft">
+      <p>
+        <span id="headertext">Welcome to the dashboard!</span>
+      </p>
+      <div class="infotext">
+        <p>Look at all this secret data.</p>
+        <p>You can do awesome stuff here, like logout.</p>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

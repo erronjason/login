@@ -14,6 +14,7 @@ a, a:visited {
   text-decoration: none;
 }
 a:hover {
+  cursor: pointer;
   background-color: #363636;
   color: #ee524a;
   text-decoration: none;
@@ -22,12 +23,6 @@ a:hover {
 p label {
   padding: 0 0 0 1px;
 }
-
-#container {
-  position: relative;
-  width: 80%;
-}
-
 #dashboard {
   font-size: 17px;
   height: 60px;
@@ -45,12 +40,13 @@ p label {
   color: #ee524a;
 }
 input {
+  width: 100%;
   font-family: 'PT Sans Caption', sans-serif;
   font-weight: 700;
   font-size: 13px;
   color: #464646;
   outline: none;
-  padding: 9px 9px 9px 9px;
+  padding: 10px 10px 10px 10px;
   border: 0px solid #f5f8f7;
   background-color: #f5f8f7;
 }
@@ -58,17 +54,20 @@ input {
   border: 1px solid #ee524a;
 }
 input[type=submit] {
-  padding: 9px 25px 9px 25px;
+  cursor: pointer;
+  margin-top: 3%;
+  width: 106%;
+  padding: 10px 25px 10px 25px;
   border-radius: 25px;
   color: #fff;
   background-color: #ee524a;
 }
 .correct {
-  margin-left: 25px;
+  margin-left: 0px;
   color: #13AF68;
 }
 .incorrect {
-  margin-left: 25px;
+  margin-left: 0px;
   color: #ee524a;
 }
 #headertext {
@@ -80,27 +79,40 @@ input[type=submit] {
   font-weight: 400;
   font-size: 10;
 }
+.infotext {
+  width: 200px
+  display: block;
+  font-weight: 400;
+  font-size: 10;
+}
+#container {
+  margin: 5% 10% 0 10%;
+
+  position: relative;
+  width: 80%;
+}
 .floatleft {
   float: left;
-  margin-left: 10%;
-  width: 10%;
+  width: 40%;
 }
 .floatright {
   float: right;
-  margin-right: 10%;
-  width: 10%;
+  width: 40%;
 }
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 685px) {
   #container {
     position: relative;
     width: 90%;
   }
   .floatright {
     float: none;
-    margin-left: 10%;
+    margin-left: 23%;
   }
   .floatleft {
     float: none;
-    margin-left: 10%;
+    margin-left: 23%;
+  }
+  input[type=submit] {
+  width: 112%;
   }
 }

@@ -76,6 +76,10 @@ if ($_GET['t'] === "r") {
     print json_encode(array("success"));
   }
 } elseif ($_GET['t'] === "l") {
+  $err_username = array();
+  $err_password = array();
+  $err_general = array();
+
   if (!isset($_GET['username']) or $_GET['username'] === '') {
     $err_username[] = 'You must specify a username';
   }

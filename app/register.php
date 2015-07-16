@@ -23,7 +23,7 @@ $_SESSION['form_token'] = $token;
         success: function(json) {
           if (json[0] == 'success') {
             console.log("Registration successful!");
-            location.replace("login.php");
+            location.replace("login.php?r=s");
           } else {
             $("#error").html("")
             //for(var i=0; i < json.length; i++) {
@@ -45,9 +45,11 @@ $_SESSION['form_token'] = $token;
     var cpassword = document.getElementById("cpassword");
     var iscorrect = document.getElementById('iscorrect');
     if (password.value == cpassword.value) {
-      iscorrect.innerHTML = '<span class="correct">&#10004;</span>';
+      iscorrect.innerHTML = '<span class="infotext"><span class="correct">&#10004;</span> Password matches!</span>';
+      return true;
     } else {
-      iscorrect.innerHTML = '<span class="incorrect">&#10008;</span>';
+      iscorrect.innerHTML = '<span class="infotext"><span class="incorrect">&#10008;</span> Passwords do not match</span>';
+      return false;
     }
   }
   </script>
